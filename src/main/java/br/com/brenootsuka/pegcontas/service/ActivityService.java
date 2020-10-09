@@ -34,4 +34,9 @@ public class ActivityService {
 
         return activity;
     }
+
+    public Activity findByActivityId(Long activityId) {
+
+        return activityRepository.findByActivityId(activityId);
+    }
 }

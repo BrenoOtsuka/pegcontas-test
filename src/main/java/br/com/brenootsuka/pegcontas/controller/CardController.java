@@ -30,6 +30,9 @@ public class CardController {
         List<Card> cards = Collections.emptyList();
 
         switch (q) {
+            case "activityId":
+                cards = cardService.findByActivityId(Long.valueOf(value));
+                break;
             case "visitId":
                 cards = cardService.findByVisitId(Long.valueOf(value));
                 break;

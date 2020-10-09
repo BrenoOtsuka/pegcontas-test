@@ -1,5 +1,6 @@
 package br.com.brenootsuka.pegcontas.service;
 
+import br.com.brenootsuka.pegcontas.model.Activity;
 import br.com.brenootsuka.pegcontas.model.Bill;
 import br.com.brenootsuka.pegcontas.repository.BillRepository;
 import org.springframework.stereotype.Service;

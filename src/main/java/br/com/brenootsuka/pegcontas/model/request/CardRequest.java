@@ -2,9 +2,12 @@ package br.com.brenootsuka.pegcontas.model.request;
 
 import br.com.brenootsuka.pegcontas.commons.enums.BillType;
 import br.com.brenootsuka.pegcontas.commons.enums.SlaStatus;
+import br.com.brenootsuka.pegcontas.model.Bill;
+import br.com.brenootsuka.pegcontas.model.Card;
 
 public class CardRequest {
 
+    private Long activityId;
     private int daysSinceCreated;
     private SlaStatus slaStatus;
     private Long visitId;
@@ -18,6 +21,35 @@ public class CardRequest {
     private int numberOfOpenPendencies;
     private String healthInsuranceName;
     private String patientName;
+
+    public Card getCard() {
+        return new Card(
+                this.slaStatus,
+                this.visitId,
+                this.daysSinceCreated,
+                this.numberOfChecklistItem,
+                this.numberOfDoneChecklistItem,
+                this.numberOfDocuments,
+                this.numberOfNotReceivedDocuments
+        );
+    }
+
+    public Bill getBill() {
+        return new Bill(
+                this.billType,
+                this.numberOfPendencies,
+                this.numberOfOpenPendencies,
+                this.totalAmount
+        );
+    }
+
+    public Long getActivityId() {
+        return activityId;
+    }
+
+    public void setActivityId(Long activityId) {
+        this.activityId = activityId;
+    }
 
     public int getDaysSinceCreated() {
         return daysSinceCreated;

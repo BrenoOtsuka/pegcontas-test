@@ -1,5 +1,6 @@
 package br.com.brenootsuka.pegcontas.repository;
 
+import br.com.brenootsuka.pegcontas.model.Activity;
 import br.com.brenootsuka.pegcontas.model.Bill;
 import br.com.brenootsuka.pegcontas.model.Card;
 import br.com.brenootsuka.pegcontas.model.Patient;
@@ -16,4 +17,6 @@ public interface CardRepository extends JpaRepository<Card, Long> {
     public List<Card> findByBill(Bill bill);
 
     public List<Card> findByPatient(Patient patient);
+
+    public List<Card> findByActivity(Activity activity);
 }

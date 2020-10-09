@@ -1,13 +1,11 @@
 package br.com.brenootsuka.pegcontas.service;
 
-import br.com.brenootsuka.pegcontas.model.Bill;
-import br.com.brenootsuka.pegcontas.model.Card;
-import br.com.brenootsuka.pegcontas.model.HealthInsurance;
-import br.com.brenootsuka.pegcontas.model.Patient;
+import br.com.brenootsuka.pegcontas.model.*;
 import br.com.brenootsuka.pegcontas.model.request.CardRequest;
 import br.com.brenootsuka.pegcontas.repository.CardRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
@@ -38,41 +36,42 @@ public class CardService {
 
     public Card save(CardRequest request) {
 
-        Patient patient = patientService.findByName(request.getPatientName());
+        Card card = null;
+        Activity activity = activityService.findByActivityId(request.getActivityId());
 
-        if (patient == null) {
-            patient = new Patient(request.getPatientName());
+        if (activity != null) {
+            String patientName = request.getPatientName();
+            Patient patient = patientService.findByName(patientName);
+
+            if (patient == null) {
+                patient = new Patient(request.getPatientName());
+            }
+
+            String healthInsuranceName = request.getHealthInsuranceName();
+            HealthInsurance healthInsurance = healthInsuranceService.findByName(healthInsuranceName);
+
+            if (healthInsurance == null) {
+                healthInsurance = new HealthInsurance(request.getHealthInsuranceName());
+            }
+
+            Bill bill = billService.save(request.getBill());
+
+            card = request.getCard();
+            card.setBill(bill);
+            card.setPatient(patient);
+            card.setActivity(activity);
+            card.setHealthInsurance(healthInsurance);
+
+            card = cardRepository.save(card);
         }
+        return card;
+    }
 
-        HealthInsurance healthInsurance = healthInsuranceService.findByName(request.getHealthInsuranceName());
+    public List<Card> findByActivityId(Long value) {
 
-        if (healthInsurance == null) {
-            healthInsurance = new HealthInsurance(request.getHealthInsuranceName());
-        }
+        Activity activity = activityService.findByActivityId(value);
 
-        Bill bill = new Bill(
-                request.getBillType(),
-                request.getNumberOfPendencies(),
-                request.getNumberOfOpenPendencies(),
-                request.getTotalAmount()
-        );
-        bill = billService.save(bill);
-
-        Card card = new Card(
-                request.getSlaStatus(),
-                request.getVisitId(),
-                request.getDaysSinceCreated(),
-                request.getNumberOfChecklistItem(),
-                request.getNumberOfDoneChecklistItem(),
-                request.getNumberOfDocuments(),
-                request.getNumberOfNotReceivedDocuments()
-        );
-
-        card.setBill(bill);
-        card.setPatient(patient);
-        card.setHealthInsurance(healthInsurance);
-
-        return cardRepository.save(card);
+        return cardRepository.findByActivity(activity);
     }
 
     public List<Card> findByVisitId(Long value) {
@@ -96,7 +95,7 @@ public class CardService {
     public List<Card> filterByPriority(List<Card> cards) {
 
         cards.sort(Comparator.comparing(Card::getDaysSinceCreated));
-
+        Collections.reverse(cards);
         return cards;
     }
 
