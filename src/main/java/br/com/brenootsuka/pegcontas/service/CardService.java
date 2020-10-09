@@ -40,18 +40,18 @@ public class CardService {
         Activity activity = activityService.findByActivityId(request.getActivityId());
 
         if (activity != null) {
-            String patientName = request.getPatientName();
+            String patientName = request.getPatient();
             Patient patient = patientService.findByName(patientName);
 
             if (patient == null) {
-                patient = new Patient(request.getPatientName());
+                patient = new Patient(patientName);
             }
 
-            String healthInsuranceName = request.getHealthInsuranceName();
+            String healthInsuranceName = request.getHealthInsurance();
             HealthInsurance healthInsurance = healthInsuranceService.findByName(healthInsuranceName);
 
             if (healthInsurance == null) {
-                healthInsurance = new HealthInsurance(request.getHealthInsuranceName());
+                healthInsurance = new HealthInsurance(healthInsuranceName);
             }
 
             Bill bill = billService.save(request.getBill());

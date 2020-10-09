@@ -19,8 +19,8 @@ public class CardRequest {
     private float totalAmount;
     private int numberOfPendencies;
     private int numberOfOpenPendencies;
-    private String healthInsuranceName;
-    private String patientName;
+    private String healthInsurance;
+    private String patient;
 
     public Card getCard() {
         return new Card(
@@ -139,19 +139,19 @@ public class CardRequest {
         this.numberOfOpenPendencies = numberOfOpenPendencies;
     }
 
-    public String getHealthInsuranceName() {
-        return healthInsuranceName;
+    public String getHealthInsurance() {
+        return healthInsurance;
     }
 
-    public void setHealthInsuranceName(String healthInsuranceName) {
-        this.healthInsuranceName = healthInsuranceName;
+    public void setHealthInsuranceName(String healthInsurance) {
+        this.healthInsurance = healthInsurance;
     }
 
-    public String getPatientName() {
-        return patientName;
+    public String getPatient() {
+        return patient;
     }
 
-    public void setPatientName(String patientName) {
-        this.patientName = patientName;
+    public void setPatientName(String patient) {
+        this.patient = patient;
     }
 }
