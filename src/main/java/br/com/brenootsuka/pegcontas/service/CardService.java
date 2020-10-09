@@ -5,6 +5,7 @@ import br.com.brenootsuka.pegcontas.model.request.CardRequest;
 import br.com.brenootsuka.pegcontas.repository.CardRepository;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -34,6 +35,7 @@ public class CardService {
         this.healthInsuranceService = healthInsuranceService;
     }
 
+    @Transactional
     public Card save(CardRequest request) {
 
         Card card = null;
