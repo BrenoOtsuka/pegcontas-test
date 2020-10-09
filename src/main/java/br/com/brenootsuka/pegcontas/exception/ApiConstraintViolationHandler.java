@@ -27,7 +27,7 @@ public class ApiConstraintViolationHandler {
 
         Set<String> messages = new HashSet<>(constraintViolations.size());
         messages.addAll(constraintViolations.stream()
-                .map(constraintViolation -> String.format("Constraint violation: %s", constraintViolation.getMessage()))
+                .map(constraintViolation -> String.format("Constraint violation: %s %s", constraintViolation.getPropertyPath() , constraintViolation.getMessage()))
                 .collect(Collectors.toList()));
 
         HttpStatus status = HttpStatus.BAD_REQUEST;

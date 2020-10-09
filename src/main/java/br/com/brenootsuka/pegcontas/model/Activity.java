@@ -12,13 +12,13 @@ public class Activity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long activityId;
 
-    @NotBlank(message = "title is mandatory")
+    @NotBlank
     private String title;
 
-    @NotBlank(message = "subtitle is mandatory")
+    @NotBlank
     private String subtitle;
 
-    @NotNull(message = "sla is mandatory")
+    @NotNull
     private int sla;
 
     public Activity() {
