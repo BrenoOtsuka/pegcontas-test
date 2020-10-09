@@ -3,6 +3,7 @@ package br.com.brenootsuka.pegcontas.model;
 import br.com.brenootsuka.pegcontas.commons.enums.BillType;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "bill")
@@ -13,12 +14,12 @@ public class Bill {
     private Long billId;
 
     @Enumerated(EnumType.STRING)
-    private BillType billType;
+    @NotNull private BillType billType;
 
-    private int numberOfPendencies;
-    private int numberOfOpenPendencies;
+    @NotNull private int numberOfPendencies;
+    @NotNull private int numberOfOpenPendencies;
 
-    private float totalAmount;
+    @NotNull private float totalAmount;
 
     public Bill() {
     }

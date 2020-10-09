@@ -3,17 +3,10 @@ package br.com.brenootsuka.pegcontas.model.request;
 public class ActivityRequest {
 
     private String title;
+
     private String subtitle;
+
     private int sla;
-
-    public ActivityRequest() {
-    }
-
-    public ActivityRequest(String title, String subtitle, int sla) {
-        this.title = title;
-        this.subtitle = subtitle;
-        this.sla = sla;
-    }
 
     public String getTitle() {
         return title;

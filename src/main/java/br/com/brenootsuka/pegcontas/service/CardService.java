@@ -14,11 +14,11 @@ import java.util.stream.Collectors;
 @Service
 public class CardService {
 
-    private CardRepository cardRepository;
-    private BillService billService;
-    private PatientService patientService;
-    private ActivityService activityService;
-    private HealthInsuranceService healthInsuranceService;
+    private final CardRepository cardRepository;
+    private final BillService billService;
+    private final PatientService patientService;
+    private final ActivityService activityService;
+    private final HealthInsuranceService healthInsuranceService;
 
     public CardService(
             CardRepository cardRepository,

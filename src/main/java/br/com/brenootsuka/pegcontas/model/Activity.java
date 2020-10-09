@@ -1,6 +1,8 @@
 package br.com.brenootsuka.pegcontas.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "activity")
@@ -10,9 +12,13 @@ public class Activity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long activityId;
 
+    @NotBlank(message = "title is mandatory")
     private String title;
+
+    @NotBlank(message = "subtitle is mandatory")
     private String subtitle;
 
+    @NotNull(message = "sla is mandatory")
     private int sla;
 
     public Activity() {

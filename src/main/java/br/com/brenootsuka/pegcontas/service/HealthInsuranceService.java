@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class HealthInsuranceService {
 
-    private HealthInsuranceRepository healthInsuranceRepository;
+    private final HealthInsuranceRepository healthInsuranceRepository;
 
     public HealthInsuranceService(HealthInsuranceRepository healthInsuranceRepository) {
         this.healthInsuranceRepository = healthInsuranceRepository;

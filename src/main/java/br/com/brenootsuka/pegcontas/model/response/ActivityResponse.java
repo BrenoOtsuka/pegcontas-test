@@ -8,9 +8,6 @@ public class ActivityResponse {
 
     private List<Activity> activities;
 
-    public ActivityResponse() {
-    }
-
     public ActivityResponse(List<Activity> activities) {
         this.activities = activities;
     }

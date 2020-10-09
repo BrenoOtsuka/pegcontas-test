@@ -32,7 +32,7 @@ public class ActivityController {
     }
 
     @PostMapping
-    public ResponseEntity<Activity> save(@RequestBody ActivityRequest request) {
+    public ResponseEntity<Object> save(@RequestBody ActivityRequest request) {
 
         Activity response = activityService.save(request);
 

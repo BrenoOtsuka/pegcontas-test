@@ -4,6 +4,7 @@ import br.com.brenootsuka.pegcontas.commons.enums.SlaStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "card")
@@ -14,16 +15,16 @@ public class Card {
     private Long cardId;
 
     @Enumerated(EnumType.STRING)
-    private SlaStatus slaStatus;
+    @NotNull private SlaStatus slaStatus;
 
-    private Long visitId;
-    private int daysSinceCreated;
+    @NotNull private Long visitId;
+    @NotNull private int daysSinceCreated;
 
-    private int numberOfChecklistItem;
-    private int numberOfDoneChecklistItem;
+    @NotNull private int numberOfChecklistItem;
+    @NotNull private int numberOfDoneChecklistItem;
 
-    private int numberOfDocuments;
-    private int numberOfNotReceivedDocuments;
+    @NotNull private int numberOfDocuments;
+    @NotNull private int numberOfNotReceivedDocuments;
 
     @OneToOne
     @JoinColumn(name = "billId")

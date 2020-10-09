@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class BillService {
 
-    private BillRepository billRepository;
+    private final BillRepository billRepository;
 
     public BillService(BillRepository billRepository) {
         this.billRepository = billRepository;

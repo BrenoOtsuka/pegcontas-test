@@ -5,12 +5,13 @@ import br.com.brenootsuka.pegcontas.model.request.ActivityRequest;
 import br.com.brenootsuka.pegcontas.repository.ActivityRepository;
 import org.springframework.stereotype.Service;
 
+import javax.validation.ConstraintViolationException;
 import java.util.List;
 
 @Service
 public class ActivityService {
 
-    private ActivityRepository activityRepository;
+    private final ActivityRepository activityRepository;
 
     public ActivityService(ActivityRepository activityRepository) {
 
@@ -30,9 +31,11 @@ public class ActivityService {
                 request.getSla()
         );
 
-        activityRepository.save(activity);
+        try {
+            activityRepository.save(activity);
 
-        return activity;
+            return activity;
+        } catch (ConstraintViolationException exception) { throw exception; }
     }
 
     public Activity findByActivityId(Long activityId) {

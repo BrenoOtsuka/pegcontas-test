@@ -4,7 +4,6 @@ import br.com.brenootsuka.pegcontas.commons.enums.SlaStatus;
 import br.com.brenootsuka.pegcontas.model.Card;
 
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class CardResponse {
