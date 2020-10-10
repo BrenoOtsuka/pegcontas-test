@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -32,7 +33,7 @@ public class ActivityController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> save(@RequestBody ActivityRequest request) {
+    public ResponseEntity<Object> save(@Valid @RequestBody ActivityRequest request) {
 
         Activity response = activityService.save(request);
 

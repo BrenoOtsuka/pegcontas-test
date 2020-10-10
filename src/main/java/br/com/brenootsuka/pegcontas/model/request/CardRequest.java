@@ -5,22 +5,25 @@ import br.com.brenootsuka.pegcontas.commons.enums.SlaStatus;
 import br.com.brenootsuka.pegcontas.model.Bill;
 import br.com.brenootsuka.pegcontas.model.Card;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class CardRequest {
 
-    private Long activityId;
-    private int daysSinceCreated;
-    private SlaStatus slaStatus;
-    private Long visitId;
-    private int numberOfDocuments;
-    private int numberOfNotReceivedDocuments;
-    private int numberOfChecklistItem;
-    private int numberOfDoneChecklistItem;
-    private BillType billType;
-    private float totalAmount;
-    private int numberOfPendencies;
-    private int numberOfOpenPendencies;
-    private String healthInsurance;
-    private String patient;
+    @NotNull private Long activityId;
+    @NotNull private int daysSinceCreated;
+    @NotNull private SlaStatus slaStatus;
+    @NotNull private Long visitId;
+    @NotNull private int numberOfDocuments;
+    @NotNull private int numberOfNotReceivedDocuments;
+    @NotNull private int numberOfChecklistItem;
+    @NotNull private int numberOfDoneChecklistItem;
+    @NotNull private BillType billType;
+    @NotNull private float totalAmount;
+    @NotNull private int numberOfPendencies;
+    @NotNull private int numberOfOpenPendencies;
+    @NotBlank private String healthInsurance;
+    @NotBlank private String patient;
 
     public Card getCard() {
         return new Card(
@@ -56,6 +59,7 @@ public class CardRequest {
     }
 
     public void setDaysSinceCreated(int daysSinceCreated) {
+
         this.daysSinceCreated = daysSinceCreated;
     }
 
@@ -80,6 +84,7 @@ public class CardRequest {
     }
 
     public void setNumberOfDocuments(int numberOfDocuments) {
+
         this.numberOfDocuments = numberOfDocuments;
     }
 
@@ -104,6 +109,7 @@ public class CardRequest {
     }
 
     public void setNumberOfDoneChecklistItem(int numberOfDoneChecklistItem) {
+
         this.numberOfDoneChecklistItem = numberOfDoneChecklistItem;
     }
 
@@ -128,6 +134,7 @@ public class CardRequest {
     }
 
     public void setNumberOfPendencies(int numberOfPendencies) {
+
         this.numberOfPendencies = numberOfPendencies;
     }
 
@@ -144,6 +151,7 @@ public class CardRequest {
     }
 
     public void setHealthInsuranceName(String healthInsurance) {
+
         this.healthInsurance = healthInsurance;
     }
 

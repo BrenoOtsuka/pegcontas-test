@@ -14,7 +14,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @ControllerAdvice
-public class ApiConstraintViolationHandler {
+public class ConstraintViolationHandler {
 
     @ExceptionHandler(value = {ConstraintViolationException.class})
     public ResponseEntity<Object> handleConstraintViolationException(

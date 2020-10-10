@@ -1,12 +1,15 @@
 package br.com.brenootsuka.pegcontas.model.request;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class ActivityRequest {
 
-    private String title;
+    @NotBlank private String title;
 
-    private String subtitle;
+    @NotBlank private String subtitle;
 
-    private int sla;
+    @NotNull  private int sla;
 
     public String getTitle() {
         return title;
