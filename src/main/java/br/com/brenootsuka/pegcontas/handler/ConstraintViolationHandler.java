@@ -1,6 +1,6 @@
-package br.com.brenootsuka.pegcontas.exception;
+package br.com.brenootsuka.pegcontas.handler;
 
-import br.com.brenootsuka.pegcontas.model.response.ConstraintViolationResponse;
+import br.com.brenootsuka.pegcontas.model.response.ExceptionResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -35,9 +35,9 @@ public class ConstraintViolationHandler {
 
         HttpStatus status = HttpStatus.BAD_REQUEST;
 
-        ConstraintViolationResponse response;
+        ExceptionResponse response;
 
-        response = new ConstraintViolationResponse(
+        response = new ExceptionResponse(
                 ZonedDateTime.now(),
                 status.value(),
                 status.getReasonPhrase(),

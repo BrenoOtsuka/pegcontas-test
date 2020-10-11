@@ -3,14 +3,14 @@ package br.com.brenootsuka.pegcontas.model.response;
 import java.time.ZonedDateTime;
 import java.util.Set;
 
-public class MethodArgumentNotValidResponse {
+public class ExceptionResponse {
 
     private final ZonedDateTime timestamp;
     private final int status;
     private final String error;
     private final Set<String> messages;
 
-    public MethodArgumentNotValidResponse(
+    public ExceptionResponse(
             ZonedDateTime timestamp,
             int status,
             String error,
@@ -22,17 +22,11 @@ public class MethodArgumentNotValidResponse {
         this.messages = messages;
     }
 
-    public ZonedDateTime getTimestamp() {
-        return timestamp;
-    }
+    public ZonedDateTime getTimestamp() { return timestamp; }
 
-    public int getStatus() {
-        return status;
-    }
+    public int getStatus() { return status; }
 
-    public String getError() {
-        return error;
-    }
+    public String getError() { return error; }
 
     public Set<String> getMessages() { return messages; }
 }

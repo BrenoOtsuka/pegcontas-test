@@ -1,6 +1,6 @@
-package br.com.brenootsuka.pegcontas.exception;
+package br.com.brenootsuka.pegcontas.handler;
 
-import br.com.brenootsuka.pegcontas.model.response.MethodArgumentNotValidResponse;
+import br.com.brenootsuka.pegcontas.model.response.ExceptionResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -9,7 +9,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import javax.validation.ConstraintViolation;
 import java.time.ZonedDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -23,8 +22,6 @@ public class MethodArgumentNotValidHandler {
     ) {
         HttpStatus status = HttpStatus.BAD_REQUEST;
 
-        MethodArgumentNotValidResponse response;
-
         List<ObjectError> errors = exception.getBindingResult().getAllErrors();
 
         Set<String> messages = new HashSet<>(errors.size());
@@ -36,7 +33,9 @@ public class MethodArgumentNotValidHandler {
                 ))
                 .collect(Collectors.toList()));
 
-        response = new MethodArgumentNotValidResponse(
+        ExceptionResponse response;
+
+        response = new ExceptionResponse(
                 ZonedDateTime.now(),
                 status.value(),
                 status.getReasonPhrase(),
