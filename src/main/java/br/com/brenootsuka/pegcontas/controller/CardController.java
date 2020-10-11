@@ -27,7 +27,7 @@ public class CardController {
     @GetMapping
     public ResponseEntity<CardResponse> findBy(
             @RequestParam String q,
-            @RequestParam String filter,
+            @RequestParam(required = false) String filter,
             @RequestParam String value
     ) {
         List<Card> cards = Collections.emptyList();
@@ -48,17 +48,20 @@ public class CardController {
             default: break;
         }
 
-        switch (filter) {
-            case "PRIORITY":
-                cards = cardService.filterByPriority(cards);
-                break;
-            case "TO_RECEIVE":
-                cards = cardService.filterByToReceive(cards);
-                break;
-            case "TO_SEND":
-                cards = cardService.filterByToSend(cards);
-                break;
-            default: break;
+        if (filter != null) {
+            switch (filter) {
+                case "PRIORITY":
+                    cards = cardService.filterByPriority(cards);
+                    break;
+                case "TO_RECEIVE":
+                    cards = cardService.filterByToReceive(cards);
+                    break;
+                case "TO_SEND":
+                    cards = cardService.filterByToSend(cards);
+                    break;
+                default:
+                    break;
+            }
         }
 
         CardResponse response = new CardResponse(cards);
