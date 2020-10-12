@@ -77,6 +77,7 @@ public class CardService {
     }
 
     public List<Card> findByVisitId(Long value) {
+
         return cardRepository.findByVisitId(value);
     }
 
@@ -104,7 +105,7 @@ public class CardService {
     public List<Card> filterByToReceive(List<Card> cards) {
 
         Predicate<Card> byDocumentsToReceive;
-        byDocumentsToReceive = card -> card.getNumberOfNotReceivedDocuments() != 0;
+        byDocumentsToReceive = card -> card.getNumberOfNotReceivedDocuments() > 0;
 
         return cards.stream().filter(byDocumentsToReceive).collect(Collectors.toList());
     }

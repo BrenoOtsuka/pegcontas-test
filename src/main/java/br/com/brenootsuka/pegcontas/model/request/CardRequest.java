@@ -25,6 +25,38 @@ public class CardRequest {
     @NotBlank private String healthInsurance;
     @NotBlank private String patient;
 
+    public CardRequest(
+            @NotNull Long activityId,
+            @NotNull int daysSinceCreated,
+            @NotNull SlaStatus slaStatus,
+            @NotNull Long visitId,
+            @NotNull int numberOfDocuments,
+            @NotNull int numberOfNotReceivedDocuments,
+            @NotNull int numberOfChecklistItem,
+            @NotNull int numberOfDoneChecklistItem,
+            @NotNull BillType billType,
+            @NotNull float totalAmount,
+            @NotNull int numberOfPendencies,
+            @NotNull int numberOfOpenPendencies,
+            @NotBlank String healthInsurance,
+            @NotBlank String patient
+    ) {
+        this.activityId = activityId;
+        this.daysSinceCreated = daysSinceCreated;
+        this.slaStatus = slaStatus;
+        this.visitId = visitId;
+        this.numberOfDocuments = numberOfDocuments;
+        this.numberOfNotReceivedDocuments = numberOfNotReceivedDocuments;
+        this.numberOfChecklistItem = numberOfChecklistItem;
+        this.numberOfDoneChecklistItem = numberOfDoneChecklistItem;
+        this.billType = billType;
+        this.totalAmount = totalAmount;
+        this.numberOfPendencies = numberOfPendencies;
+        this.numberOfOpenPendencies = numberOfOpenPendencies;
+        this.healthInsurance = healthInsurance;
+        this.patient = patient;
+    }
+
     public Card getCard() {
         return new Card(
                 this.slaStatus,
