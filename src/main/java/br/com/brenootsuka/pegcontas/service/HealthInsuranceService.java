@@ -14,12 +14,6 @@ public class HealthInsuranceService {
     }
 
     public HealthInsurance findByName(String name) {
-
         return healthInsuranceRepository.findByName(name);
-    }
-
-    public HealthInsurance save(HealthInsurance healthInsurance) {
-
-        return healthInsuranceRepository.save(healthInsurance);
     }
 }
