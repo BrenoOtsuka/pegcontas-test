@@ -2,7 +2,9 @@
 
 The challenge is to build an API to post and get activities and cards
 
-To send requests to the API, I used Postman. The routes are:
+# Run the project
+
+I believe it works if you clone the project and open it with IntelliJ, NetBeans, or similar. Using the IDE of your preference, build, and run the project (I used IntelliJ). To send requests to the API, I used Postman. The routes are:
 
 Get all activity : /api/v1/activity/all (GET)
 
