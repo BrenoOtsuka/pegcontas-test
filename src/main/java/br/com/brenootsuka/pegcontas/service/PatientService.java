@@ -18,9 +18,4 @@ public class PatientService {
 
         return patientRepository.findByName(name);
     }
-
-    public Patient save(Patient patient) {
-
-        return patientRepository.save(patient);
-    }
 }
