@@ -11,6 +11,19 @@ public class ActivityRequest {
 
     @NotNull  private int sla;
 
+    public ActivityRequest() {
+    }
+
+    public ActivityRequest(
+            @NotBlank String title,
+            @NotBlank String subtitle,
+            @NotNull int sla
+    ) {
+        this.title = title;
+        this.subtitle = subtitle;
+        this.sla = sla;
+    }
+
     public String getTitle() {
         return title;
     }
