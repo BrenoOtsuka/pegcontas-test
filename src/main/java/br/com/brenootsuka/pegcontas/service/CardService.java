@@ -99,6 +99,7 @@ public class CardService {
 
         cards.sort(Comparator.comparing(Card::getDaysSinceCreated));
         Collections.reverse(cards);
+
         return cards;
     }
 

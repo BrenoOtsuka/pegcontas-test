@@ -1,10 +1,7 @@
 package br.com.brenootsuka.pegcontas.service;
 
 import br.com.brenootsuka.pegcontas.commons.enums.BillType;
-import br.com.brenootsuka.pegcontas.model.Activity;
 import br.com.brenootsuka.pegcontas.model.Bill;
-import br.com.brenootsuka.pegcontas.model.request.ActivityRequest;
-import br.com.brenootsuka.pegcontas.repository.ActivityRepository;
 import br.com.brenootsuka.pegcontas.repository.BillRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,8 +13,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import javax.validation.ConstraintViolationException;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
@@ -30,16 +25,20 @@ public class BillServiceTest {
     @MockBean
     private BillRepository repository;
 
-    @Test
-    public void findByBillIdSuccessTest() {
-        long billId = (long) 1;
-
-        Bill bill = new Bill(
+    private Bill setupBill() {
+        return new Bill(
                 BillType.HOSPITALAR,
                 0,
                 0,
                 (float) 8925.55
         );
+    }
+
+    @Test
+    public void findByBillIdSuccessTest() {
+        long billId = (long) 1;
+
+        Bill bill = setupBill();
         bill.setBillId(billId);
 
         when(repository.findByBillId(billId)).thenReturn(bill);
@@ -51,12 +50,7 @@ public class BillServiceTest {
     public void findByActivityIdFailTest() {
         long billId = (long) 1;
 
-        Bill bill = new Bill(
-                BillType.HOSPITALAR,
-                0,
-                0,
-                (float) 8925.55
-        );
+        Bill bill = setupBill();
         bill.setBillId((long) 2);
 
         when(repository.findByBillId(billId)).thenReturn(null);
@@ -66,12 +60,7 @@ public class BillServiceTest {
 
     @Test
     public void saveSuccessTest() {
-        Bill bill = new Bill(
-                BillType.HOSPITALAR,
-                0,
-                0,
-                (float) 8925.55
-        );
+        Bill bill = setupBill();
 
         when(repository.save(bill)).thenReturn(bill);
 
@@ -81,13 +70,9 @@ public class BillServiceTest {
     @Test
     public void saveFailTest() {
 
-        Bill bill = new Bill();
-        bill.setBillType(BillType.HOSPITALAR);
-        bill.setNumberOfPendencies(0);
-        bill.setNumberOfOpenPendencies(0);
+        Bill bill = setupBill();
 
-        when(repository.save(bill))
-                .thenThrow(ConstraintViolationException.class);
+        when(repository.save(bill)).thenThrow(ConstraintViolationException.class);
 
         try {
             service.save(bill);
