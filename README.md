@@ -42,7 +42,7 @@ Add card : /api/v1/card (POST)
 }
 ```
 
-IMPORTANTE: In the requests that uses Body, it is important to specify in the Header that Content-Type is equal to application/json
+IMPORTANT: In the requests that uses Body, it is important to specify in the Header that Content-Type is equal to application/json
 
 # Required
 
